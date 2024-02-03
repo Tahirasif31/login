@@ -1,16 +1,20 @@
+import { transform } from 'framer-motion';
 import styles from './Login.module.css'
 import { useState } from 'react';
 
 function Login(){
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [emailError, setEmailError] = useState(false)
+  const [passError, setPassError] = useState(false)
+
 
 
   function login(){
     if(password.length < 8){
-      alert('Enter atleast 8 character long  password')
-    }else if(email.length === 0 && password.length === 0){
-      alert('Enter email and password then try again')
+      setEmailError(true)
+    }else if(email.length === 0){
+      setPassError(true)
     }else {
       alert('you are sucessfully login')
     }
@@ -26,7 +30,7 @@ function Login(){
                   Email
                 </label>
                 
-                <input type="text" className={styles.inputEmail} placeholder='Enter Your Email'/>
+                <input type="text" className={`${styles.inputEmail} ${emailError ? styles.error : ""}`} placeholder='Enter Your Email'/>
               </div>
               <div>
                 
@@ -34,7 +38,7 @@ function Login(){
                   Password
                 </label>
                 
-                <input type="password" className={styles.inputPassword } onChange={(e) => setPassword(e.target.value)} value={password} placeholder={'Enter your password'}/>
+                <input type="password" className={`${styles.inputPassword}  ${emailError ? styles.error : ""}`} onChange={(e) => setPassword(e.target.value)} value={password} placeholder={'Enter your password'}/>
               </div>
               <p className={styles.forget}>forgot Password!</p>
               <div className={styles.loginBtn} onClick={login}>Login</div>

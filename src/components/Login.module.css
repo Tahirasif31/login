@@ -92,3 +92,7 @@
 .signup {
     color: blue;
 }
+
+.error {
+    border: 1px solid red;
+}
