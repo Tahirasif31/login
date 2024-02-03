@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import * as React from 'react'
-import { ChakraProvider } from '@chakra-ui/react'
-import './App.css'
-import Login from './components/Login'
+import { useState } from "react";
+import * as React from "react";
+import { Container, Flex } from "@chakra-ui/react";
+import "./App.css";
+import Login from "./components/Login";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <div className="mainContainer">
+    <Flex bg="#353131" h="100vh" maxW="100vw" alignItems="center">
       <Login />
-    </div>
-  )
+    </Flex>
+  );
 }
 
-export default App
+export default App;
