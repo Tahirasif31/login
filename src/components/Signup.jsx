@@ -10,7 +10,9 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-function Login() {
+function Signup() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -40,12 +42,12 @@ function Login() {
         DashBoard Ui Kit
       </Text>
       <Heading
-        fontSize="2.2rem"
+        fontSize="2rem"
         textAlign="center"
         padding="0 3.2rem"
         mb="0.8rem"
       >
-        Log In to Dashboard Kit
+        Signup to Dashboard Kit
       </Heading>
       <Box>
         <Text
@@ -55,9 +57,31 @@ function Login() {
           fontWeight="500"
           mb="4rem"
         >
-          Enter your email and password
+          Enter your Personal Information
         </Text>
 
+        <Text fontSize="2.2rem" color="#A4A6B3" mb="0.4rem" value={email}>
+          Full Name
+        </Text>
+
+        <Input
+          sx={{
+            padding: "1.2rem",
+            marginBottom: "1.8rem",
+            borderRadius: "8px",
+            ":focus": {
+              outline: "none",
+            },
+          }}
+          size="4xl"
+          type="text"
+          placeholder="Enter Your Email"
+          onChange={(e) => setName(e.target.value)}
+          border={emailError ? "2px solid red" : "2px solid #A4A6B3"}
+          value={name}
+        />
+      </Box>
+      <Box>
         <Text fontSize="2.2rem" color="#A4A6B3" mb="0.4rem" value={email}>
           Email
         </Text>
@@ -115,17 +139,17 @@ function Login() {
         marginBottom="1.8rem"
         onClick={login}
       >
-        Login
+        Signup
       </Button>
 
       <Text fontSize="1.8rem" textAlign="center">
-        <Text as="span">don't have an account? </Text>
+        <Text as="span">already have an account? </Text>
         <Text as="span" color="blue">
-          Sign up now
+          Login now
         </Text>
       </Text>
     </Container>
   );
 }
 
-export default Login;
+export default Signup;

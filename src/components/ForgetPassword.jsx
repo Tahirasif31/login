@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-function Login() {
+function ForgetPassword() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -40,12 +40,12 @@ function Login() {
         DashBoard Ui Kit
       </Text>
       <Heading
-        fontSize="2.2rem"
+        fontSize="1.8rem"
         textAlign="center"
         padding="0 3.2rem"
         mb="0.8rem"
       >
-        Log In to Dashboard Kit
+        Recover Your Dashboard Kit
       </Heading>
       <Box>
         <Text
@@ -53,9 +53,9 @@ function Login() {
           color="#A4A6B3"
           textAlign="center"
           fontWeight="500"
-          mb="4rem"
+          mb="1.2rem"
         >
-          Enter your email and password
+          Enter your email to request new password
         </Text>
 
         <Text fontSize="2.2rem" color="#A4A6B3" mb="0.4rem" value={email}>
@@ -79,31 +79,6 @@ function Login() {
           value={email}
         />
       </Box>
-      <Box>
-        <Text fontSize="2.2rem" color="#A4A6B3" mb="0.4rem" value={email}>
-          Password
-        </Text>
-
-        <Input
-          border={passError ? "2px solid red" : "2px solid #A4A6B3"}
-          type="text"
-          padding="1.2rem"
-          placeholder="Enter Your Password"
-          borderRadius="8px"
-          size="4xl"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-      </Box>
-      <Text
-        textAlign="right"
-        fontSize="1.8rem"
-        marginTop="4px"
-        marginBottom="2.8rem"
-        color="#A4A6B3"
-      >
-        forgot Password!
-      </Text>
       <Button
         py="0.8rem"
         px="1.2rem"
@@ -115,7 +90,7 @@ function Login() {
         marginBottom="1.8rem"
         onClick={login}
       >
-        Login
+        Recover
       </Button>
 
       <Text fontSize="1.8rem" textAlign="center">
@@ -128,4 +103,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgetPassword;
