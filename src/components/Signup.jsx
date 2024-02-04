@@ -9,6 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -119,15 +120,17 @@ function Signup() {
           value={password}
         />
       </Box>
-      <Text
-        textAlign="right"
-        fontSize="1.8rem"
-        marginTop="4px"
-        marginBottom="2.8rem"
-        color="#A4A6B3"
-      >
-        forgot Password!
-      </Text>
+      <Link to={"/forget"}>
+        <Text
+          textAlign="right"
+          fontSize="1.8rem"
+          marginTop="4px"
+          marginBottom="2.8rem"
+          color="#A4A6B3"
+        >
+          forgot Password!
+        </Text>
+      </Link>
       <Button
         py="0.8rem"
         px="1.2rem"
@@ -144,9 +147,11 @@ function Signup() {
 
       <Text fontSize="1.8rem" textAlign="center">
         <Text as="span">already have an account? </Text>
-        <Text as="span" color="blue">
-          Login now
-        </Text>
+        <Link to={"/"}>
+          <Text as="span" color="blue">
+            Login now
+          </Text>
+        </Link>
       </Text>
     </Container>
   );

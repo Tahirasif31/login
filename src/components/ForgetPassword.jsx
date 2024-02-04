@@ -9,6 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ForgetPassword() {
   const [email, setEmail] = useState("");
@@ -95,9 +96,11 @@ function ForgetPassword() {
 
       <Text fontSize="1.8rem" textAlign="center">
         <Text as="span">don't have an account? </Text>
-        <Text as="span" color="blue">
-          Sign up now
-        </Text>
+        <Link to={"/signup"}>
+          <Text as="span" color="blue">
+            Sign up now
+          </Text>
+        </Link>
       </Text>
     </Container>
   );

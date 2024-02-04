@@ -9,6 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -95,15 +96,17 @@ function Login() {
           value={password}
         />
       </Box>
-      <Text
-        textAlign="right"
-        fontSize="1.8rem"
-        marginTop="4px"
-        marginBottom="2.8rem"
-        color="#A4A6B3"
-      >
-        forgot Password!
-      </Text>
+      <Link to={"/forget"}>
+        <Text
+          textAlign="right"
+          fontSize="1.8rem"
+          marginTop="4px"
+          marginBottom="2.8rem"
+          color="#A4A6B3"
+        >
+          forgot Password!
+        </Text>
+      </Link>
       <Button
         py="0.8rem"
         px="1.2rem"
@@ -120,9 +123,11 @@ function Login() {
 
       <Text fontSize="1.8rem" textAlign="center">
         <Text as="span">don't have an account? </Text>
-        <Text as="span" color="blue">
-          Sign up now
-        </Text>
+        <Link to={"/signup"}>
+          <Text as="span" color="blue">
+            Sign up now
+          </Text>
+        </Link>
       </Text>
     </Container>
   );

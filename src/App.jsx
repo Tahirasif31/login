@@ -1,20 +1,22 @@
 import { useState } from "react";
-import * as React from "react";
-import { Container, Flex } from "@chakra-ui/react";
 import "./App.css";
-import Login from "./components/Login";
+import { Route, Router, Routes } from "react-router-dom";
 import Signup from "./components/Signup";
+import Login from "./components/Login";
 import ForgetPassword from "./components/forgetPassword";
+import Layout from "./Layout";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <Flex bg="#353131" h="100vh" maxW="100vw" alignItems="center">
-      {/* <Login /> */}
-      {/* <Signup /> */}
-      <ForgetPassword />
-    </Flex>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="forget" element={<ForgetPassword />} />
+      </Route>
+    </Routes>
   );
 }
 
