@@ -8,23 +8,54 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
+  // const [loginError, setLoginError] = useState(false);
+  // useEffect(
+  //   function () {
+  //     isError();
+  //   },
+  //   [isError]
+  // );
 
+  function validateEmail(email) {
+    var atPos = email.indexOf("@");
+    var dotPos = email.lastIndexOf(".");
+    return atPos > 0 && dotPos > atPos + 1 && dotPos < email.length - 1;
+  }
+
+  // function isEmailError(email) {
+  //   if (!validateEmail(email)) return setEmailError(true);
+  //   setEmailError((e) => false);
+  // }
+
+  // function isPassError(password) {
+  //   if (password.length < 8) return setPassError(true);
+  //   setPassError((e) => false);
+  // }
   function login() {
-    if (email.length === 0) return setEmailError(true);
-    if (password.length < 8) return setPassError(true);
-    setEmailError((e) => false);
-    setPassError((e) => false);
-    setEmail("");
-    setPassword("");
-    alert("you are sucessfully login");
+    if (!validateEmail(email)) {
+      setMessage("Enter Valid Email");
+      setEmailError(true);
+      return;
+    } else if (password < 8) {
+      setMessage("Enter valid password");
+      setPassError(true);
+      return;
+    } else {
+      setEmailError(false);
+      setPassError(false);
+      setEmail("");
+      setPassword("");
+      setMessage("login succedd");
+    }
   }
   return (
     <Container
@@ -75,7 +106,10 @@ function Login() {
           size="4xl"
           type="text"
           placeholder="Enter Your Email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            isEmailError(email);
+          }}
           border={emailError ? "2px solid red" : "2px solid #A4A6B3"}
           value={email}
         />
@@ -92,7 +126,10 @@ function Login() {
           placeholder="Enter Your Password"
           borderRadius="8px"
           size="4xl"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            isPassError(password);
+          }}
           value={password}
         />
       </Box>
@@ -107,6 +144,9 @@ function Login() {
           forgot Password!
         </Text>
       </Link>
+
+      <Text fontSize="1.8rem">{message}</Text>
+
       <Button
         py="0.8rem"
         px="1.2rem"
