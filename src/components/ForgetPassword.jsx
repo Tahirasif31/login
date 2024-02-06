@@ -13,18 +13,25 @@ import { Link } from "react-router-dom";
 
 function ForgetPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
-  const [passError, setPassError] = useState(false);
+  const [message, setMessage] = useState("");
 
-  function login() {
-    if (email.length === 0) return setEmailError(true);
-    if (password.length < 8) return setPassError(true);
-    setEmailError((e) => false);
-    setPassError((e) => false);
-    setEmail("");
-    setPassword("");
-    alert("you are sucessfully login");
+  function validateEmail(email) {
+    var atPos = email.indexOf("@");
+    var dotPos = email.lastIndexOf(".");
+    return atPos > 0 && dotPos > atPos + 1 && dotPos < email.length - 1;
+  }
+
+  function forgetAccount() {
+    if (!validateEmail(email)) {
+      setMessage("Enter Valid Email");
+      setEmailError(true);
+      return;
+    } else {
+      setEmailError(false);
+      setEmail("");
+      setMessage("New password sent successfully");
+    }
   }
   return (
     <Container
@@ -80,6 +87,7 @@ function ForgetPassword() {
           value={email}
         />
       </Box>
+      <Text fontSize="1.8rem">{message}</Text>
       <Button
         py="0.8rem"
         px="1.2rem"
@@ -89,7 +97,7 @@ function ForgetPassword() {
         size="4xl"
         borderRadius="6px"
         marginBottom="1.8rem"
-        onClick={login}
+        onClick={forgetAccount}
       >
         Recover
       </Button>

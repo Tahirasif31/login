@@ -17,13 +17,6 @@ function Login() {
   const [message, setMessage] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
-  // const [loginError, setLoginError] = useState(false);
-  // useEffect(
-  //   function () {
-  //     isError();
-  //   },
-  //   [isError]
-  // );
 
   function validateEmail(email) {
     var atPos = email.indexOf("@");
@@ -31,15 +24,6 @@ function Login() {
     return atPos > 0 && dotPos > atPos + 1 && dotPos < email.length - 1;
   }
 
-  // function isEmailError(email) {
-  //   if (!validateEmail(email)) return setEmailError(true);
-  //   setEmailError((e) => false);
-  // }
-
-  // function isPassError(password) {
-  //   if (password.length < 8) return setPassError(true);
-  //   setPassError((e) => false);
-  // }
   function login() {
     if (!validateEmail(email)) {
       setMessage("Enter Valid Email");

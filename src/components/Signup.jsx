@@ -13,20 +13,42 @@ import { Link } from "react-router-dom";
 
 function Signup() {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
+  const [message, setMessage] = useState("");
 
-  function login() {
-    if (email.length === 0) return setEmailError(true);
-    if (password.length < 8) return setPassError(true);
-    setEmailError((e) => false);
-    setPassError((e) => false);
-    setEmail("");
-    setPassword("");
-    alert("you are sucessfully login");
+  function validateEmail(email) {
+    var atPos = email.indexOf("@");
+    var dotPos = email.lastIndexOf(".");
+    return atPos > 0 && dotPos > atPos + 1 && dotPos < email.length - 1;
+  }
+
+  function signUp() {
+    if (name < 5) {
+      setMessage("Enter Correct Name");
+      setNameError(true);
+      return;
+    }
+    if (!validateEmail(email)) {
+      setMessage("Enter Valid Email");
+      setEmailError(true);
+      return;
+    } else if (password < 8) {
+      setMessage("Enter valid password");
+      setPassError(true);
+      return;
+    } else {
+      setNameError(false);
+      setEmailError(false);
+      setPassError(false);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setMessage("login succedd");
+    }
   }
   return (
     <Container
@@ -78,7 +100,7 @@ function Signup() {
           type="text"
           placeholder="Enter Your Email"
           onChange={(e) => setName(e.target.value)}
-          border={emailError ? "2px solid red" : "2px solid #A4A6B3"}
+          border={nameError ? "2px solid red" : "2px solid #A4A6B3"}
           value={name}
         />
       </Box>
@@ -131,6 +153,7 @@ function Signup() {
           forgot Password!
         </Text>
       </Link>
+      <Text fontSize="1.8rem">{message}</Text>
       <Button
         py="0.8rem"
         px="1.2rem"
@@ -140,7 +163,7 @@ function Signup() {
         size="4xl"
         borderRadius="6px"
         marginBottom="1.8rem"
-        onClick={login}
+        onClick={signUp}
       >
         Signup
       </Button>
